@@ -1,0 +1,156 @@
+# Diagonale Analysis Decision Tree
+
+How to choose analysis parameters in Diagonale.
+
+### General parameters
+
+1. `di_cfg.analysis.objective`
+- required for all analyses
+- allowed values: `permutationH0testing`, `bootstrapStability`
+
+2. `di_cfg.analysis.inferenceLevel`
+- required for all analyses
+- allowed values: `feature`, `cluster`, `latent`
+
+3. `di_cfg.analysis.dataStruct`
+- required for all analyses
+- must be a 'table' variable
+
+4. `di_cfg.analysis.ignore_row`
+- required for all analyses (default is to ignore nothing)
+- if provided: column vector with one value per row of `Y`
+
+5. `di_cfg.analysis.ignore_col`
+- optional for all analyses (default is to ignore nothing)
+- if provided: row vector with one value per column of `Y`
+
+6. `di_cfg.analysis.randomSeed`
+- required for all analyses (default is `42`)
+- must be finite integer scalar
+
+7. `di_cfg.analysis.nIterations`
+- required for all analyses (default is `5000`)
+
+8. `di_cfg.analysis.verbose`
+- optional for all analyses (default is `false`)
+- type: logical/boolean
+- controls whether debug/progress information is printed to console
+
+9. `di_cfg.analysis.figFlag`
+- optional for all analyses (default is `false`)
+- type: logical/boolean
+- controls whether figures/plots are generated during analysis
+
+
+### Permutation-only parameters
+
+The following parameters must be set if `di_cfg.analysis.objective = 'permutationH0testing'`
+
+10. `di_cfg.analysis.permuteUnit`
+- required when `di_cfg.analysis.objective = permutationH0testing`
+- not used when `di_cfg.analysis.objective = bootstrapStability`
+- allowed values: `wholeObservation`, `withinObservation`
+- note: final validity depends on design code in `di_validateH0`
+
+11. `di_cfg.analysis.p_crit`
+- required when `di_cfg.analysis.objective = permutationH0testing` (default `0.05`)
+- not used when `di_cfg.analysis.objective = bootstrapStability`
+
+12. `di_cfg.analysis.testingApproach`
+- required when `di_cfg.analysis.objective = permutationH0testing`
+- not allowed when `di_cfg.analysis.objective = bootstrapStability`
+- allowed values depend on `di_cfg.analysis.inferenceLevel = ...`:
+    - `'feature'`: testing approach can be `empirical` or `parametric`
+    - `'cluster'`: testing approach can be `parametric` only
+    - `'latent'`: testing approach can be `empirical` only
+
+13. `di_cfg.analysis.correction`
+- required when `di_cfg.analysis.objective = permutationH0testing`
+- not allowed when `di_cfg.analysis.objective = bootstrapStability`
+- allowed values depend on `inferenceLevel`:
+    - `feature`: `FDR` or `maxT`
+    - `cluster`: `maxT` only
+    - `latent`: `maxT` only
+    
+14. `di_cfg.analysis.FDR_dimensions`
+- required only when:
+    - `di_cfg.analysis.objective = permutationH0testing`
+    - `di_cfg.analysis.inferenceLevel = feature`
+    - `di_cfg.analysis.correction = FDR`
+- not allowed in all other cases
+
+
+### Cluster-specific parameters
+
+15. `di_cfg.analysis.clusterParams`
+- required when `di_cfg.analysis.inferenceLevel = cluster`
+- optional but ignored when `inferenceLevel` is not `cluster`
+
+16. `di_cfg.analysis.clusterParams.adjacencyMatrix`
+- required when `di_cfg.analysis.inferenceLevel = cluster`
+
+17. `di_cfg.analysis.clusterParams.distance_continuous_index`
+- required when:
+    - `di_cfg.analysis.inferenceLevel = cluster`
+    - at least one dimension is continuous
+
+18. `di_cfg.analysis.clusterParams.distance_spherical_radians`
+- required when:
+    - `di_cfg.analysis.inferenceLevel = cluster`
+    - at least one dimension is spherical
+
+19. `di_cfg.analysis.clusterParams.clusterFormingPvalThreshold`
+- required when `di_cfg.analysis.inferenceLevel = cluster` (default `0.05`)
+
+### Latent (PLS-SVD) parameters
+
+20. `di_cfg.analysis.plssvdParams`
+- required when `di_cfg.analysis.inferenceLevel = latent`
+- ignored when `di_cfg.analysis.inferenceLevel` is not `latent`
+
+21. `di_cfg.analysis.plssvdParams.zscoringVec`
+- required when `di_cfg.analysis.inferenceLevel = latent` (default `[false, true]`)
+
+22. `di_cfg.analysis.subjectCentering`
+- optional, only valid when `di_cfg.analysis.inferenceLevel = latent` AND design has repeated measures
+- allowed values: `center`, `noCenter` (default is `noCenter`)
+- note: if set to `center` in OLS-based analyses (feature/cluster), causes validation error
+- repeated measures designs typically have subjects appearing in multiple conditions
+
+### OLS-specific parameters (feature/cluster inference)
+
+The following parameters apply only when `di_cfg.analysis.inferenceLevel = 'feature'` or `'cluster'`, which are powered by  OLS regression under the hood.
+
+23. `di_cfg.analysis.OLS.varianceType`
+- optional for OLS-based feature and cluster analyses
+- allowed values: `equal`, `unequal` (default is `equal`)
+- `equal` compares groups through standard Student's t-test (homogeneous variance assumed)
+- `unequal` compares groups through Welch's t-test (heterogeneous variance allowed)
+
+24. `di_cfg.analysis.OLS.standardize`
+- optional for OLS-based feature and cluster analyses 
+- allowed values: `true`, `false` as logical/boolean (default is `false`)
+- when `false`, uses raw values
+- when `true`, z-scores both predictor and outcome variables (standardized slopes equal correlation coefficient)
+
+
+25. `di_cfg.analysis.OLS.ranked`
+- optional for OLS-based feature and cluster analyses
+- allowed values: `true`, `false` as logical/boolean (default is `false`)
+- when `false`, uses raw/standardized values (it yields Pearson correlation coefficients when used with di_cfg.analysis.OLS.standardize = true)
+- when `true`, rank transform both predictor and outcome variables (it yields Spearman correlation coefficients when used with di_cfg.analysis.OLS.standardize = true)
+
+
+
+
+### Compatibility matrix
+
+| objective         | inferenceLevel | supported | testingApproach | correction options
+| --- | --- | --- | --- | --- |
+| `permutationH0testing` | `feature` | yes | empirical, parametric | FDR, maxT |
+| `permutationH0testing` | `cluster` | yes | parametric | maxT |
+| `permutationH0testing` | `latent`  | yes | empirical  | maxT |
+| `bootstrapStability`   | `feature` | yes | n/a        | n/a  |
+| `bootstrapStability`   | `cluster` | no  | n/a        | n/a  |
+| `bootstrapStability`   | `latent`  | yes | n/a        | n/a  |
+
