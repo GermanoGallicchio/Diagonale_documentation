@@ -1,14 +1,20 @@
-# Documentation of _PhysioExplorer_ for MATLAB
+# Documentation of _Diagonale_ for MATLAB
 
-Toolbox for statistical analysis of multivariate physiological data in 3d space (temporal, spectral, channels) or any subspace 
+Toolbox for statistical data analysis
 
-Reference: <br>
+Software available at: [GitHub repository](https://github.com/GermanoGallicchio/Diagonale)
 
-Gallicchio, G. (2025). PhysioExplorer. Zenodo. https://doi.org/10.5281/zenodo.16808782
+Cite as (APA style): 
+Gallicchio, G. (2025). _Diagonale_ [software]. Zenodo. https://doi.org/10.5281/zenodo.16808782
 
-documentation 
-...work in progress... it will be here
 
-tutorials
-...work in progress... will also be here
+**Note: this documentation is work in progress**
+
+1. Installation [link](https://germanogallicchio.github.io/Diagonale_documentation/installation.html)
+1. Analysis parameters decision tree [link](https://germanogallicchio.github.io/Diagonale_documentation/decisionTree.html)
+1. Analysis parameters definitions **coming soon**
+1. Tutorials **coming soon**
+
+
+
 
