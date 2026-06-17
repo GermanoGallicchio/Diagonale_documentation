@@ -3,7 +3,7 @@ project:
   output-dir: ./docs/
 
 website:
-  title: "PhysioExplorer documentation"
+  title: "Diagonale documentation"
   navbar:
     title: false
     background: primary
@@ -13,7 +13,7 @@ website:
         href: https://germanogallicchio.github.io/index.html
       - text: Software
         href: https://germanogallicchio.github.io/software.html
-      - text: PhysioExplorer docs
+      - text: Diagonale docs
         href: index.html
 
 format:
