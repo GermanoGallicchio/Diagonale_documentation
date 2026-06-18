@@ -119,12 +119,18 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#diagonale-analysis-decision-tree" id="toc-diagonale-analysis-decision-tree" class="nav-link active" data-scroll-target="#diagonale-analysis-decision-tree">Diagonale Analysis Decision Tree</a>
   <ul class="collapse">
+  <li><a href="#main-analysis-tree" id="toc-main-analysis-tree" class="nav-link" data-scroll-target="#main-analysis-tree">Main Analysis Tree</a></li>
+  <li><a href="#datastruct-parameter" id="toc-datastruct-parameter" class="nav-link" data-scroll-target="#datastruct-parameter">dataStruct Parameter</a></li>
+  <li><a href="#clusterparams-sub-tree" id="toc-clusterparams-sub-tree" class="nav-link" data-scroll-target="#clusterparams-sub-tree">clusterParams Sub-tree</a></li>
+  <li><a href="#ols-sub-tree" id="toc-ols-sub-tree" class="nav-link" data-scroll-target="#ols-sub-tree">OLS Sub-tree</a>
+  <ul class="collapse">
+  <li><a href="#compatibility-matrix" id="toc-compatibility-matrix" class="nav-link" data-scroll-target="#compatibility-matrix">Compatibility matrix</a></li>
   <li><a href="#general-parameters" id="toc-general-parameters" class="nav-link" data-scroll-target="#general-parameters">General parameters</a></li>
   <li><a href="#permutation-only-parameters" id="toc-permutation-only-parameters" class="nav-link" data-scroll-target="#permutation-only-parameters">Permutation-only parameters</a></li>
   <li><a href="#cluster-specific-parameters" id="toc-cluster-specific-parameters" class="nav-link" data-scroll-target="#cluster-specific-parameters">Cluster-specific parameters</a></li>
   <li><a href="#latent-pls-svd-parameters" id="toc-latent-pls-svd-parameters" class="nav-link" data-scroll-target="#latent-pls-svd-parameters">Latent (PLS-SVD) parameters</a></li>
   <li><a href="#ols-specific-parameters-featurecluster-inference" id="toc-ols-specific-parameters-featurecluster-inference" class="nav-link" data-scroll-target="#ols-specific-parameters-featurecluster-inference">OLS-specific parameters (feature/cluster inference)</a></li>
-  <li><a href="#compatibility-matrix" id="toc-compatibility-matrix" class="nav-link" data-scroll-target="#compatibility-matrix">Compatibility matrix</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -138,6 +144,592 @@ ul.task-list li input[type="checkbox"] {
 <section id="diagonale-analysis-decision-tree" class="level1">
 <h1>Diagonale Analysis Decision Tree</h1>
 <p>How to choose analysis parameters in Diagonale.</p>
+<section id="main-analysis-tree" class="level2">
+<h2 class="anchored" data-anchor-id="main-analysis-tree">Main Analysis Tree</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 1200.94 625.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 621.2)">
+<title>DecisionTree</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-621.2 1196.94,-621.2 1196.94,4 -4,4"></polygon>
+<g id="clust2" class="cluster">
+<title>cluster_permutation</title>
+<polygon fill="none" stroke="black" stroke-dasharray="5,2" points="67.94,-317.2 67.94,-449.2 337.94,-449.2 337.94,-317.2 67.94,-317.2"></polygon>
+<text text-anchor="middle" x="202.94" y="-432.6" font-family="Times,serif" font-size="14.00">permutation parameters</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_plssvd</title>
+<polygon fill="none" stroke="black" stroke-dasharray="5,2" points="822.94,-8 822.94,-124 1184.94,-124 1184.94,-8 822.94,-8"></polygon>
+<text text-anchor="middle" x="1003.94" y="-107.4" font-family="Times,serif" font-size="14.00">PLS-SVD parameters</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_ols</title>
+<polygon fill="none" stroke="black" stroke-dasharray="5,2" points="662.94,-24.8 662.94,-107.2 814.94,-107.2 814.94,-24.8 662.94,-24.8"></polygon>
+<text text-anchor="middle" x="738.94" y="-90.6" font-family="Times,serif" font-size="14.00">OLS parameters</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_clustering</title>
+<polygon fill="none" stroke="black" stroke-dasharray="5,2" points="336.94,-226.8 336.94,-309.2 540.94,-309.2 540.94,-226.8 336.94,-226.8"></polygon>
+<text text-anchor="middle" x="438.94" y="-292.6" font-family="Times,serif" font-size="14.00">clustering parameters</text>
+</g>
+<g id="clust1" class="cluster">
+<title>cluster_global</title>
+<polygon fill="none" stroke="black" stroke-dasharray="5,2" points="326.94,-457.2 326.94,-573.2 516.94,-573.2 516.94,-457.2 326.94,-457.2"></polygon>
+<text text-anchor="middle" x="421.94" y="-556.6" font-family="Times,serif" font-size="14.00">Global/Common</text>
+<text text-anchor="middle" x="421.94" y="-539.8" font-family="Times,serif" font-size="14.00">analysis settings</text>
+</g>
+<!-- root -->
+<g id="node1" class="node">
+<title>root</title>
+<path fill="none" stroke="black" d="M619.94,-617.2C619.94,-617.2 589.94,-617.2 589.94,-617.2 583.94,-617.2 577.94,-611.2 577.94,-605.2 577.94,-605.2 577.94,-593.2 577.94,-593.2 577.94,-587.2 583.94,-581.2 589.94,-581.2 589.94,-581.2 619.94,-581.2 619.94,-581.2 625.94,-581.2 631.94,-587.2 631.94,-593.2 631.94,-593.2 631.94,-605.2 631.94,-605.2 631.94,-611.2 625.94,-617.2 619.94,-617.2"></path>
+<text text-anchor="middle" x="604.94" y="-595" font-family="Times,serif" font-size="14.00">Start</text>
+</g>
+<!-- global_seed -->
+<g id="node2" class="node">
+<title>global_seed</title>
+<path fill="none" stroke="black" d="M496.79,-523.8C496.79,-523.8 347.09,-523.8 347.09,-523.8 341.09,-523.8 335.09,-517.8 335.09,-511.8 335.09,-511.8 335.09,-477 335.09,-477 335.09,-471 341.09,-465 347.09,-465 347.09,-465 496.79,-465 496.79,-465 502.79,-465 508.79,-471 508.79,-477 508.79,-477 508.79,-511.8 508.79,-511.8 508.79,-517.8 502.79,-523.8 496.79,-523.8"></path>
+<text text-anchor="middle" x="421.94" y="-507" font-family="Times,serif" font-size="14.00">di_cfg.analysis.randomSeed</text>
+<text text-anchor="middle" x="421.94" y="-490.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.nIterations</text>
+<text text-anchor="middle" x="421.94" y="-473.4" font-family="Times,serif" font-size="14.00">(required for all)</text>
+</g>
+<!-- root&#45;&gt;global_seed -->
+<g id="edge2" class="edge">
+<title>root-&gt;global_seed</title>
+<path fill="none" stroke="black" d="M577.94,-583.03C552.58,-568.79 513.78,-546.99 481.22,-528.7"></path>
+<polygon fill="black" stroke="black" points="482.66,-525.49 472.22,-523.65 479.23,-531.59 482.66,-525.49"></polygon>
+</g>
+<!-- perm -->
+<g id="node3" class="node">
+<title>perm</title>
+<path fill="none" stroke="black" d="M670.62,-515C670.62,-515 539.26,-515 539.26,-515 533.26,-515 527.26,-509 527.26,-503 527.26,-503 527.26,-485.8 527.26,-485.8 527.26,-479.8 533.26,-473.8 539.26,-473.8 539.26,-473.8 670.62,-473.8 670.62,-473.8 676.62,-473.8 682.62,-479.8 682.62,-485.8 682.62,-485.8 682.62,-503 682.62,-503 682.62,-509 676.62,-515 670.62,-515"></path>
+<text text-anchor="middle" x="604.94" y="-498.6" font-family="Times,serif" font-size="14.00">di_cfg.analysis.objective</text>
+<text text-anchor="middle" x="604.94" y="-481.8" font-family="Times,serif" font-size="14.00">= 'permutationH0testing'</text>
+</g>
+<!-- root&#45;&gt;perm -->
+<g id="edge3" class="edge">
+<title>root-&gt;perm</title>
+<path fill="none" stroke="black" d="M604.94,-580.76C604.94,-565.53 604.94,-543.11 604.94,-525.06"></path>
+<polygon fill="black" stroke="black" points="608.44,-525.03 604.94,-515.03 601.44,-525.03 608.44,-525.03"></polygon>
+</g>
+<!-- boot -->
+<g id="node5" class="node">
+<title>boot</title>
+<path fill="none" stroke="black" d="M916.62,-515C916.62,-515 785.26,-515 785.26,-515 779.26,-515 773.26,-509 773.26,-503 773.26,-503 773.26,-485.8 773.26,-485.8 773.26,-479.8 779.26,-473.8 785.26,-473.8 785.26,-473.8 916.62,-473.8 916.62,-473.8 922.62,-473.8 928.62,-479.8 928.62,-485.8 928.62,-485.8 928.62,-503 928.62,-503 928.62,-509 922.62,-515 916.62,-515"></path>
+<text text-anchor="middle" x="850.94" y="-498.6" font-family="Times,serif" font-size="14.00">di_cfg.analysis.objective</text>
+<text text-anchor="middle" x="850.94" y="-481.8" font-family="Times,serif" font-size="14.00">= 'bootstrapStability'</text>
+</g>
+<!-- root&#45;&gt;boot -->
+<g id="edge4" class="edge">
+<title>root-&gt;boot</title>
+<path fill="none" stroke="black" d="M632.21,-586.81C671.11,-570.55 743.44,-540.32 794.25,-519.09"></path>
+<polygon fill="black" stroke="black" points="795.91,-522.19 803.79,-515.11 793.21,-515.73 795.91,-522.19"></polygon>
+</g>
+<!-- perm_h0 -->
+<g id="node4" class="node">
+<title>perm_h0</title>
+<path fill="none" stroke="black" d="M318.08,-416.5C318.08,-416.5 87.8,-416.5 87.8,-416.5 81.8,-416.5 75.8,-410.5 75.8,-404.5 75.8,-404.5 75.8,-337.1 75.8,-337.1 75.8,-331.1 81.8,-325.1 87.8,-325.1 87.8,-325.1 318.08,-325.1 318.08,-325.1 324.08,-325.1 330.08,-331.1 330.08,-337.1 330.08,-337.1 330.08,-404.5 330.08,-404.5 330.08,-410.5 324.08,-416.5 318.08,-416.5"></path>
+<text text-anchor="middle" x="202.94" y="-399.8" font-family="Times,serif" font-size="14.00">di_cfg.analysis.permuteUnit</text>
+<text text-anchor="middle" x="202.94" y="-383" font-family="Times,serif" font-size="14.00">= 'wholeObservation' | 'withinObservation'</text>
+<text text-anchor="middle" x="202.94" y="-350.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.p_crit</text>
+<text text-anchor="middle" x="202.94" y="-333.4" font-family="Times,serif" font-size="14.00">(default 0.05)</text>
+</g>
+<!-- perm&#45;&gt;perm_h0 -->
+<g id="edge5" class="edge">
+<title>perm-&gt;perm_h0</title>
+<path fill="none" stroke="black" d="M539.91,-473.73C486.11,-457.45 407.85,-433.78 340.29,-413.35"></path>
+<polygon fill="black" stroke="black" points="340.99,-409.9 330.4,-410.36 338.96,-416.6 340.99,-409.9"></polygon>
+</g>
+<!-- feat1 -->
+<g id="node6" class="node">
+<title>feat1</title>
+<path fill="none" stroke="black" d="M439.81,-400.2C439.81,-400.2 360.07,-400.2 360.07,-400.2 354.07,-400.2 348.07,-394.2 348.07,-388.2 348.07,-388.2 348.07,-353.4 348.07,-353.4 348.07,-347.4 354.07,-341.4 360.07,-341.4 360.07,-341.4 439.81,-341.4 439.81,-341.4 445.81,-341.4 451.81,-347.4 451.81,-353.4 451.81,-353.4 451.81,-388.2 451.81,-388.2 451.81,-394.2 445.81,-400.2 439.81,-400.2"></path>
+<text text-anchor="middle" x="399.94" y="-383.4" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="399.94" y="-366.6" font-family="Times,serif" font-size="14.00">inferenceLevel</text>
+<text text-anchor="middle" x="399.94" y="-349.8" font-family="Times,serif" font-size="14.00">= 'feature'</text>
+</g>
+<!-- perm&#45;&gt;feat1 -->
+<g id="edge6" class="edge">
+<title>perm-&gt;feat1</title>
+<path fill="none" stroke="black" d="M571.55,-473.59C540.35,-455.09 493.17,-427.1 456.17,-405.15"></path>
+<polygon fill="black" stroke="black" points="457.87,-402.09 447.48,-400 454.3,-408.11 457.87,-402.09"></polygon>
+</g>
+<!-- clus1 -->
+<g id="node7" class="node">
+<title>clus1</title>
+<path fill="none" stroke="black" d="M644.81,-400.2C644.81,-400.2 565.07,-400.2 565.07,-400.2 559.07,-400.2 553.07,-394.2 553.07,-388.2 553.07,-388.2 553.07,-353.4 553.07,-353.4 553.07,-347.4 559.07,-341.4 565.07,-341.4 565.07,-341.4 644.81,-341.4 644.81,-341.4 650.81,-341.4 656.81,-347.4 656.81,-353.4 656.81,-353.4 656.81,-388.2 656.81,-388.2 656.81,-394.2 650.81,-400.2 644.81,-400.2"></path>
+<text text-anchor="middle" x="604.94" y="-383.4" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="604.94" y="-366.6" font-family="Times,serif" font-size="14.00">inferenceLevel</text>
+<text text-anchor="middle" x="604.94" y="-349.8" font-family="Times,serif" font-size="14.00">= 'cluster'</text>
+</g>
+<!-- perm&#45;&gt;clus1 -->
+<g id="edge7" class="edge">
+<title>perm-&gt;clus1</title>
+<path fill="none" stroke="black" d="M604.94,-473.59C604.94,-456.55 604.94,-431.47 604.94,-410.47"></path>
+<polygon fill="black" stroke="black" points="608.44,-410.23 604.94,-400.23 601.44,-410.23 608.44,-410.23"></polygon>
+</g>
+<!-- late1 -->
+<g id="node8" class="node">
+<title>late1</title>
+<path fill="none" stroke="black" d="M767.81,-400.2C767.81,-400.2 688.07,-400.2 688.07,-400.2 682.07,-400.2 676.07,-394.2 676.07,-388.2 676.07,-388.2 676.07,-353.4 676.07,-353.4 676.07,-347.4 682.07,-341.4 688.07,-341.4 688.07,-341.4 767.81,-341.4 767.81,-341.4 773.81,-341.4 779.81,-347.4 779.81,-353.4 779.81,-353.4 779.81,-388.2 779.81,-388.2 779.81,-394.2 773.81,-400.2 767.81,-400.2"></path>
+<text text-anchor="middle" x="727.94" y="-383.4" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="727.94" y="-366.6" font-family="Times,serif" font-size="14.00">inferenceLevel</text>
+<text text-anchor="middle" x="727.94" y="-349.8" font-family="Times,serif" font-size="14.00">= 'latent'</text>
+</g>
+<!-- perm&#45;&gt;late1 -->
+<g id="edge8" class="edge">
+<title>perm-&gt;late1</title>
+<path fill="none" stroke="black" d="M624.98,-473.59C643.08,-455.7 670.16,-428.93 692,-407.33"></path>
+<polygon fill="black" stroke="black" points="694.54,-409.75 699.19,-400.23 689.61,-404.77 694.54,-409.75"></polygon>
+</g>
+<!-- feat2 -->
+<g id="node20" class="node">
+<title>feat2</title>
+<path fill="none" stroke="black" d="M890.81,-400.2C890.81,-400.2 811.07,-400.2 811.07,-400.2 805.07,-400.2 799.07,-394.2 799.07,-388.2 799.07,-388.2 799.07,-353.4 799.07,-353.4 799.07,-347.4 805.07,-341.4 811.07,-341.4 811.07,-341.4 890.81,-341.4 890.81,-341.4 896.81,-341.4 902.81,-347.4 902.81,-353.4 902.81,-353.4 902.81,-388.2 902.81,-388.2 902.81,-394.2 896.81,-400.2 890.81,-400.2"></path>
+<text text-anchor="middle" x="850.94" y="-383.4" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="850.94" y="-366.6" font-family="Times,serif" font-size="14.00">inferenceLevel</text>
+<text text-anchor="middle" x="850.94" y="-349.8" font-family="Times,serif" font-size="14.00">= 'feature'</text>
+</g>
+<!-- boot&#45;&gt;feat2 -->
+<g id="edge22" class="edge">
+<title>boot-&gt;feat2</title>
+<path fill="none" stroke="black" d="M850.94,-473.59C850.94,-456.55 850.94,-431.47 850.94,-410.47"></path>
+<polygon fill="black" stroke="black" points="854.44,-410.23 850.94,-400.23 847.44,-410.23 854.44,-410.23"></polygon>
+</g>
+<!-- late2 -->
+<g id="node21" class="node">
+<title>late2</title>
+<path fill="none" stroke="black" d="M1031.81,-400.2C1031.81,-400.2 952.07,-400.2 952.07,-400.2 946.07,-400.2 940.07,-394.2 940.07,-388.2 940.07,-388.2 940.07,-353.4 940.07,-353.4 940.07,-347.4 946.07,-341.4 952.07,-341.4 952.07,-341.4 1031.81,-341.4 1031.81,-341.4 1037.81,-341.4 1043.81,-347.4 1043.81,-353.4 1043.81,-353.4 1043.81,-388.2 1043.81,-388.2 1043.81,-394.2 1037.81,-400.2 1031.81,-400.2"></path>
+<text text-anchor="middle" x="991.94" y="-383.4" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="991.94" y="-366.6" font-family="Times,serif" font-size="14.00">inferenceLevel</text>
+<text text-anchor="middle" x="991.94" y="-349.8" font-family="Times,serif" font-size="14.00">= 'latent'</text>
+</g>
+<!-- boot&#45;&gt;late2 -->
+<g id="edge23" class="edge">
+<title>boot-&gt;late2</title>
+<path fill="none" stroke="black" d="M873.91,-473.59C894.91,-455.48 926.45,-428.28 951.65,-406.55"></path>
+<polygon fill="black" stroke="black" points="953.96,-409.18 959.24,-400 949.38,-403.88 953.96,-409.18"></polygon>
+</g>
+<!-- feat1_test -->
+<g id="node10" class="node">
+<title>feat1_test</title>
+<path fill="none" stroke="black" d="M276.94,-285C276.94,-285 140.94,-285 140.94,-285 134.94,-285 128.94,-279 128.94,-273 128.94,-273 128.94,-238.2 128.94,-238.2 128.94,-232.2 134.94,-226.2 140.94,-226.2 140.94,-226.2 276.94,-226.2 276.94,-226.2 282.94,-226.2 288.94,-232.2 288.94,-238.2 288.94,-238.2 288.94,-273 288.94,-273 288.94,-279 282.94,-285 276.94,-285"></path>
+<text text-anchor="middle" x="208.94" y="-268.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="208.94" y="-251.4" font-family="Times,serif" font-size="14.00">testingApproach</text>
+<text text-anchor="middle" x="208.94" y="-234.6" font-family="Times,serif" font-size="14.00">= 'empirical' | 'parametric'</text>
+</g>
+<!-- feat1&#45;&gt;feat1_test -->
+<g id="edge10" class="edge">
+<title>feat1-&gt;feat1_test</title>
+<path fill="none" stroke="black" d="M352.24,-341.53C325.92,-325.93 293.07,-306.46 265.46,-290.1"></path>
+<polygon fill="black" stroke="black" points="267.09,-286.99 256.7,-284.91 263.52,-293.01 267.09,-286.99"></polygon>
+</g>
+<!-- ols_ref -->
+<g id="node22" class="node">
+<title>ols_ref</title>
+<path fill="none" stroke="black" d="M794.78,-74.2C794.78,-74.2 683.1,-74.2 683.1,-74.2 677.1,-74.2 671.1,-68.2 671.1,-62.2 671.1,-62.2 671.1,-45 671.1,-45 671.1,-39 677.1,-33 683.1,-33 683.1,-33 794.78,-33 794.78,-33 800.78,-33 806.78,-39 806.78,-45 806.78,-45 806.78,-62.2 806.78,-62.2 806.78,-68.2 800.78,-74.2 794.78,-74.2"></path>
+<text text-anchor="middle" x="738.94" y="-57.8" font-family="Times,serif" font-size="14.00">di_cfg.analysis.OLS</text>
+<text text-anchor="middle" x="738.94" y="-41" font-family="Times,serif" font-size="14.00">(see OLS tree below)</text>
+</g>
+<!-- feat1&#45;&gt;ols_ref -->
+<g id="edge9" class="edge">
+<title>feat1-&gt;ols_ref</title>
+<path fill="none" stroke="black" d="M431.23,-341.53C496.43,-280.51 646.09,-140.48 709.59,-81.06"></path>
+<polygon fill="black" stroke="black" points="711.98,-83.62 716.89,-74.23 707.2,-78.51 711.98,-83.62"></polygon>
+</g>
+<!-- clus1_cluster -->
+<g id="node9" class="node">
+<title>clus1_cluster</title>
+<path fill="none" stroke="black" d="M520.87,-276.2C520.87,-276.2 357.02,-276.2 357.02,-276.2 351.02,-276.2 345.02,-270.2 345.02,-264.2 345.02,-264.2 345.02,-247 345.02,-247 345.02,-241 351.02,-235 357.02,-235 357.02,-235 520.87,-235 520.87,-235 526.87,-235 532.87,-241 532.87,-247 532.87,-247 532.87,-264.2 532.87,-264.2 532.87,-270.2 526.87,-276.2 520.87,-276.2"></path>
+<text text-anchor="middle" x="438.94" y="-259.8" font-family="Times,serif" font-size="14.00">di_cfg.analysis.clusterParams</text>
+<text text-anchor="middle" x="438.94" y="-243" font-family="Times,serif" font-size="14.00">(see clusterParams tree below)</text>
+</g>
+<!-- clus1&#45;&gt;clus1_cluster -->
+<g id="edge14" class="edge">
+<title>clus1-&gt;clus1_cluster</title>
+<path fill="none" stroke="black" d="M563.48,-341.53C536.73,-323.29 502.23,-299.76 476.33,-282.1"></path>
+<polygon fill="black" stroke="black" points="478.13,-279.09 467.9,-276.35 474.19,-284.87 478.13,-279.09"></polygon>
+</g>
+<!-- clus1_test -->
+<g id="node14" class="node">
+<title>clus1_test</title>
+<path fill="none" stroke="black" d="M646.97,-285C646.97,-285 562.91,-285 562.91,-285 556.91,-285 550.91,-279 550.91,-273 550.91,-273 550.91,-238.2 550.91,-238.2 550.91,-232.2 556.91,-226.2 562.91,-226.2 562.91,-226.2 646.97,-226.2 646.97,-226.2 652.97,-226.2 658.97,-232.2 658.97,-238.2 658.97,-238.2 658.97,-273 658.97,-273 658.97,-279 652.97,-285 646.97,-285"></path>
+<text text-anchor="middle" x="604.94" y="-268.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="604.94" y="-251.4" font-family="Times,serif" font-size="14.00">testingApproach</text>
+<text text-anchor="middle" x="604.94" y="-234.6" font-family="Times,serif" font-size="14.00">= 'parametric'</text>
+</g>
+<!-- clus1&#45;&gt;clus1_test -->
+<g id="edge16" class="edge">
+<title>clus1-&gt;clus1_test</title>
+<path fill="none" stroke="black" d="M604.94,-341.53C604.94,-327.48 604.94,-310.3 604.94,-295.07"></path>
+<polygon fill="black" stroke="black" points="608.44,-294.9 604.94,-284.91 601.44,-294.91 608.44,-294.9"></polygon>
+</g>
+<!-- clus1&#45;&gt;ols_ref -->
+<g id="edge15" class="edge">
+<title>clus1-&gt;ols_ref</title>
+<path fill="none" stroke="black" d="M617.31,-341.53C642.72,-281.38 700.56,-144.45 726.25,-83.65"></path>
+<polygon fill="black" stroke="black" points="729.56,-84.8 730.23,-74.23 723.11,-82.08 729.56,-84.8"></polygon>
+</g>
+<!-- late1_test -->
+<g id="node16" class="node">
+<title>late1_test</title>
+<path fill="none" stroke="black" d="M810.97,-285C810.97,-285 726.91,-285 726.91,-285 720.91,-285 714.91,-279 714.91,-273 714.91,-273 714.91,-238.2 714.91,-238.2 714.91,-232.2 720.91,-226.2 726.91,-226.2 726.91,-226.2 810.97,-226.2 810.97,-226.2 816.97,-226.2 822.97,-232.2 822.97,-238.2 822.97,-238.2 822.97,-273 822.97,-273 822.97,-279 816.97,-285 810.97,-285"></path>
+<text text-anchor="middle" x="768.94" y="-268.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="768.94" y="-251.4" font-family="Times,serif" font-size="14.00">testingApproach</text>
+<text text-anchor="middle" x="768.94" y="-234.6" font-family="Times,serif" font-size="14.00">= 'empirical'</text>
+</g>
+<!-- late1&#45;&gt;late1_test -->
+<g id="edge18" class="edge">
+<title>late1-&gt;late1_test</title>
+<path fill="none" stroke="black" d="M738.18,-341.53C743.32,-327.34 749.61,-309.97 755.17,-294.63"></path>
+<polygon fill="black" stroke="black" points="758.57,-295.5 758.69,-284.91 751.99,-293.12 758.57,-295.5"></polygon>
+</g>
+<!-- feat1_corr_fdr -->
+<g id="node11" class="node">
+<title>feat1_corr_fdr</title>
+<path fill="none" stroke="black" d="M140.81,-190.6C140.81,-190.6 61.07,-190.6 61.07,-190.6 55.07,-190.6 49.07,-184.6 49.07,-178.6 49.07,-178.6 49.07,-143.8 49.07,-143.8 49.07,-137.8 55.07,-131.8 61.07,-131.8 61.07,-131.8 140.81,-131.8 140.81,-131.8 146.81,-131.8 152.81,-137.8 152.81,-143.8 152.81,-143.8 152.81,-178.6 152.81,-178.6 152.81,-184.6 146.81,-190.6 140.81,-190.6"></path>
+<text text-anchor="middle" x="100.94" y="-173.8" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="100.94" y="-157" font-family="Times,serif" font-size="14.00">correction</text>
+<text text-anchor="middle" x="100.94" y="-140.2" font-family="Times,serif" font-size="14.00">= 'FDR'</text>
+</g>
+<!-- feat1_test&#45;&gt;feat1_corr_fdr -->
+<g id="edge11" class="edge">
+<title>feat1_test-&gt;feat1_corr_fdr</title>
+<path fill="none" stroke="black" d="M175.95,-226.37C165.17,-217.15 153.05,-206.79 141.76,-197.12"></path>
+<polygon fill="black" stroke="black" points="143.98,-194.41 134.1,-190.57 139.43,-199.73 143.98,-194.41"></polygon>
+</g>
+<!-- feat1_corr_maxT -->
+<g id="node12" class="node">
+<title>feat1_corr_maxT</title>
+<path fill="none" stroke="black" d="M262.81,-190.6C262.81,-190.6 183.07,-190.6 183.07,-190.6 177.07,-190.6 171.07,-184.6 171.07,-178.6 171.07,-178.6 171.07,-143.8 171.07,-143.8 171.07,-137.8 177.07,-131.8 183.07,-131.8 183.07,-131.8 262.81,-131.8 262.81,-131.8 268.81,-131.8 274.81,-137.8 274.81,-143.8 274.81,-143.8 274.81,-178.6 274.81,-178.6 274.81,-184.6 268.81,-190.6 262.81,-190.6"></path>
+<text text-anchor="middle" x="222.94" y="-173.8" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="222.94" y="-157" font-family="Times,serif" font-size="14.00">correction</text>
+<text text-anchor="middle" x="222.94" y="-140.2" font-family="Times,serif" font-size="14.00">= 'maxT'</text>
+</g>
+<!-- feat1_test&#45;&gt;feat1_corr_maxT -->
+<g id="edge12" class="edge">
+<title>feat1_test-&gt;feat1_corr_maxT</title>
+<path fill="none" stroke="black" d="M213.22,-226.37C214.45,-218.21 215.83,-209.16 217.14,-200.49"></path>
+<polygon fill="black" stroke="black" points="220.61,-200.98 218.64,-190.57 213.68,-199.93 220.61,-200.98"></polygon>
+</g>
+<!-- feat1_fdr -->
+<g id="node13" class="node">
+<title>feat1_fdr</title>
+<path fill="none" stroke="black" d="M189.82,-74.2C189.82,-74.2 12.06,-74.2 12.06,-74.2 6.06,-74.2 0.06,-68.2 0.06,-62.2 0.06,-62.2 0.06,-45 0.06,-45 0.06,-39 6.06,-33 12.06,-33 12.06,-33 189.82,-33 189.82,-33 195.82,-33 201.82,-39 201.82,-45 201.82,-45 201.82,-62.2 201.82,-62.2 201.82,-68.2 195.82,-74.2 189.82,-74.2"></path>
+<text text-anchor="middle" x="100.94" y="-57.8" font-family="Times,serif" font-size="14.00">di_cfg.analysis.FDR_dimensions</text>
+<text text-anchor="middle" x="100.94" y="-41" font-family="Times,serif" font-size="14.00">(if correction='FDR')</text>
+</g>
+<!-- feat1_corr_fdr&#45;&gt;feat1_fdr -->
+<g id="edge13" class="edge">
+<title>feat1_corr_fdr-&gt;feat1_fdr</title>
+<path fill="none" stroke="black" d="M100.94,-131.9C100.94,-117.25 100.94,-99.37 100.94,-84.49"></path>
+<polygon fill="black" stroke="black" points="104.44,-84.28 100.94,-74.28 97.44,-84.28 104.44,-84.28"></polygon>
+</g>
+<!-- clus1_corr -->
+<g id="node15" class="node">
+<title>clus1_corr</title>
+<path fill="none" stroke="black" d="M644.81,-190.6C644.81,-190.6 565.07,-190.6 565.07,-190.6 559.07,-190.6 553.07,-184.6 553.07,-178.6 553.07,-178.6 553.07,-143.8 553.07,-143.8 553.07,-137.8 559.07,-131.8 565.07,-131.8 565.07,-131.8 644.81,-131.8 644.81,-131.8 650.81,-131.8 656.81,-137.8 656.81,-143.8 656.81,-143.8 656.81,-178.6 656.81,-178.6 656.81,-184.6 650.81,-190.6 644.81,-190.6"></path>
+<text text-anchor="middle" x="604.94" y="-173.8" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="604.94" y="-157" font-family="Times,serif" font-size="14.00">correction</text>
+<text text-anchor="middle" x="604.94" y="-140.2" font-family="Times,serif" font-size="14.00">= 'maxT'</text>
+</g>
+<!-- clus1_test&#45;&gt;clus1_corr -->
+<g id="edge17" class="edge">
+<title>clus1_test-&gt;clus1_corr</title>
+<path fill="none" stroke="black" d="M604.94,-226.37C604.94,-218.3 604.94,-209.36 604.94,-200.78"></path>
+<polygon fill="black" stroke="black" points="608.44,-200.57 604.94,-190.57 601.44,-200.57 608.44,-200.57"></polygon>
+</g>
+<!-- late1_corr -->
+<g id="node17" class="node">
+<title>late1_corr</title>
+<path fill="none" stroke="black" d="M960.81,-190.6C960.81,-190.6 881.07,-190.6 881.07,-190.6 875.07,-190.6 869.07,-184.6 869.07,-178.6 869.07,-178.6 869.07,-143.8 869.07,-143.8 869.07,-137.8 875.07,-131.8 881.07,-131.8 881.07,-131.8 960.81,-131.8 960.81,-131.8 966.81,-131.8 972.81,-137.8 972.81,-143.8 972.81,-143.8 972.81,-178.6 972.81,-178.6 972.81,-184.6 966.81,-190.6 960.81,-190.6"></path>
+<text text-anchor="middle" x="920.94" y="-173.8" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="920.94" y="-157" font-family="Times,serif" font-size="14.00">correction</text>
+<text text-anchor="middle" x="920.94" y="-140.2" font-family="Times,serif" font-size="14.00">= 'maxT'</text>
+</g>
+<!-- late1_test&#45;&gt;late1_corr -->
+<g id="edge19" class="edge">
+<title>late1_test-&gt;late1_corr</title>
+<path fill="none" stroke="black" d="M815.37,-226.37C831.21,-216.75 849.08,-205.89 865.55,-195.87"></path>
+<polygon fill="black" stroke="black" points="867.81,-198.6 874.53,-190.41 864.17,-192.62 867.81,-198.6"></polygon>
+</g>
+<!-- plssvd_zsc -->
+<g id="node18" class="node">
+<title>plssvd_zsc</title>
+<path fill="none" stroke="black" d="M999.31,-83C999.31,-83 842.57,-83 842.57,-83 836.57,-83 830.57,-77 830.57,-71 830.57,-71 830.57,-36.2 830.57,-36.2 830.57,-30.2 836.57,-24.2 842.57,-24.2 842.57,-24.2 999.31,-24.2 999.31,-24.2 1005.31,-24.2 1011.31,-30.2 1011.31,-36.2 1011.31,-36.2 1011.31,-71 1011.31,-71 1011.31,-77 1005.31,-83 999.31,-83"></path>
+<text text-anchor="middle" x="920.94" y="-66.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.plssvdParams</text>
+<text text-anchor="middle" x="920.94" y="-49.4" font-family="Times,serif" font-size="14.00">.zscoringVec</text>
+<text text-anchor="middle" x="920.94" y="-32.6" font-family="Times,serif" font-size="14.00">(default [false, true])</text>
+</g>
+<!-- late1_corr&#45;&gt;plssvd_zsc -->
+<g id="edge20" class="edge">
+<title>late1_corr-&gt;plssvd_zsc</title>
+<path fill="none" stroke="black" d="M920.94,-131.9C920.94,-120.06 920.94,-106.12 920.94,-93.35"></path>
+<polygon fill="black" stroke="black" points="924.44,-92.98 920.94,-82.98 917.44,-92.98 924.44,-92.98"></polygon>
+</g>
+<!-- plssvd_sc -->
+<g id="node19" class="node">
+<title>plssvd_sc</title>
+<path fill="none" stroke="black" d="M1164.55,-91.3C1164.55,-91.3 1041.33,-91.3 1041.33,-91.3 1035.33,-91.3 1029.33,-85.3 1029.33,-79.3 1029.33,-79.3 1029.33,-27.9 1029.33,-27.9 1029.33,-21.9 1035.33,-15.9 1041.33,-15.9 1041.33,-15.9 1164.55,-15.9 1164.55,-15.9 1170.55,-15.9 1176.55,-21.9 1176.55,-27.9 1176.55,-27.9 1176.55,-79.3 1176.55,-79.3 1176.55,-85.3 1170.55,-91.3 1164.55,-91.3"></path>
+<text text-anchor="middle" x="1102.94" y="-74.6" font-family="Times,serif" font-size="14.00">di_cfg.analysis.</text>
+<text text-anchor="middle" x="1102.94" y="-57.8" font-family="Times,serif" font-size="14.00">subjectCentering</text>
+<text text-anchor="middle" x="1102.94" y="-41" font-family="Times,serif" font-size="14.00">= 'noCenter' | 'center'</text>
+<text text-anchor="middle" x="1102.94" y="-24.2" font-family="Times,serif" font-size="14.00">(latent + repeated only)</text>
+</g>
+<!-- plssvd_zsc&#45;&gt;plssvd_sc -->
+<g id="edge21" class="edge">
+<title>plssvd_zsc-&gt;plssvd_sc</title>
+<path fill="none" stroke="black" d="M1011.59,-53.6C1014.04,-53.6 1016.5,-53.6 1018.96,-53.6"></path>
+<polygon fill="black" stroke="black" points="1019.07,-57.1 1029.07,-53.6 1019.07,-50.1 1019.07,-57.1"></polygon>
+</g>
+<!-- plssvd_zsc&#45;&gt;ols_ref -->
+<!-- feat2&#45;&gt;ols_ref -->
+<g id="edge24" class="edge">
+<title>feat2-&gt;ols_ref</title>
+<path fill="none" stroke="black" d="M840.61,-341.53C819.41,-281.5 771.22,-145.01 749.68,-84.03"></path>
+<polygon fill="black" stroke="black" points="752.86,-82.49 746.23,-74.23 746.25,-84.82 752.86,-82.49"></polygon>
+</g>
+<!-- late2&#45;&gt;plssvd_zsc -->
+<g id="edge25" class="edge">
+<title>late2-&gt;plssvd_zsc</title>
+<path fill="none" stroke="black" d="M985.39,-341.53C972.55,-284.17 944.08,-156.98 929.67,-92.58"></path>
+<polygon fill="black" stroke="black" points="933.08,-91.8 927.48,-82.8 926.25,-93.33 933.08,-91.8"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="datastruct-parameter" class="level2">
+<h2 class="anchored" data-anchor-id="datastruct-parameter">dataStruct Parameter</h2>
+<p><code>di_cfg.analysis.dataStruct</code> is required for all analyses. It must be a MATLAB table variable that describes the structure of your data—specifically, what each row of your Y matrix represents. At minimum, it should include an ‘observationID’ column. The table can include additional columns for grouping variables, subject identifiers, or other design factors.</p>
+<p><strong>TO DO: show how to create a dataStruct table with an example.</strong></p>
+</section>
+<section id="clusterparams-sub-tree" class="level2">
+<h2 class="anchored" data-anchor-id="clusterparams-sub-tree">clusterParams Sub-tree</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 467.84 311.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 307.8)">
+<title>ClusterParams</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-307.8 463.84,-307.8 463.84,4 -4,4"></polygon>
+<!-- root -->
+<g id="node1" class="node">
+<title>root</title>
+<path fill="none" stroke="black" d="M176.27,-181.2C176.27,-181.2 11.91,-181.2 11.91,-181.2 5.91,-181.2 -0.09,-175.2 -0.09,-169.2 -0.09,-169.2 -0.09,-152 -0.09,-152 -0.09,-146 5.91,-140 11.91,-140 11.91,-140 176.27,-140 176.27,-140 182.27,-140 188.27,-146 188.27,-152 188.27,-152 188.27,-169.2 188.27,-169.2 188.27,-175.2 182.27,-181.2 176.27,-181.2"></path>
+<text text-anchor="middle" x="94.09" y="-164.8" font-family="Times,serif" font-size="14.00">di_cfg.analysis.clusterParams</text>
+<text text-anchor="middle" x="94.09" y="-148" font-family="Times,serif" font-size="14.00">(required for cluster inference)</text>
+</g>
+<!-- adjacency -->
+<g id="node2" class="node">
+<title>adjacency</title>
+<path fill="none" stroke="black" d="M421.41,-304C421.41,-304 262.61,-304 262.61,-304 256.61,-304 250.61,-298 250.61,-292 250.61,-292 250.61,-257.2 250.61,-257.2 250.61,-251.2 256.61,-245.2 262.61,-245.2 262.61,-245.2 421.41,-245.2 421.41,-245.2 427.41,-245.2 433.41,-251.2 433.41,-257.2 433.41,-257.2 433.41,-292 433.41,-292 433.41,-298 427.41,-304 421.41,-304"></path>
+<text text-anchor="middle" x="342.01" y="-287.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.clusterParams</text>
+<text text-anchor="middle" x="342.01" y="-270.4" font-family="Times,serif" font-size="14.00">.adjacencyMatrix</text>
+<text text-anchor="middle" x="342.01" y="-253.6" font-family="Times,serif" font-size="14.00">(required)</text>
+</g>
+<!-- root&#45;&gt;adjacency -->
+<g id="edge1" class="edge">
+<title>root-&gt;adjacency</title>
+<path fill="none" stroke="black" d="M125.89,-181.32C151.42,-197.86 189.08,-220.79 224.18,-236.6 229.6,-239.04 235.22,-241.4 240.94,-243.67"></path>
+<polygon fill="black" stroke="black" points="240.05,-247.08 250.64,-247.4 242.56,-240.54 240.05,-247.08"></polygon>
+</g>
+<!-- threshold -->
+<g id="node3" class="node">
+<title>threshold</title>
+<path fill="none" stroke="black" d="M423.21,-228C423.21,-228 260.81,-228 260.81,-228 254.81,-228 248.81,-222 248.81,-216 248.81,-216 248.81,-181.2 248.81,-181.2 248.81,-175.2 254.81,-169.2 260.81,-169.2 260.81,-169.2 423.21,-169.2 423.21,-169.2 429.21,-169.2 435.21,-175.2 435.21,-181.2 435.21,-181.2 435.21,-216 435.21,-216 435.21,-222 429.21,-228 423.21,-228"></path>
+<text text-anchor="middle" x="342.01" y="-211.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.clusterParams</text>
+<text text-anchor="middle" x="342.01" y="-194.4" font-family="Times,serif" font-size="14.00">.clusterFormingPvalThreshold</text>
+<text text-anchor="middle" x="342.01" y="-177.6" font-family="Times,serif" font-size="14.00">(default 0.05)</text>
+</g>
+<!-- root&#45;&gt;threshold -->
+<g id="edge2" class="edge">
+<title>root-&gt;threshold</title>
+<path fill="none" stroke="black" d="M188.41,-175.02C204.73,-177.54 221.78,-180.18 238.33,-182.73"></path>
+<polygon fill="black" stroke="black" points="238.15,-186.25 248.56,-184.32 239.21,-179.33 238.15,-186.25"></polygon>
+</g>
+<!-- cont_idx -->
+<g id="node4" class="node">
+<title>cont_idx</title>
+<path fill="none" stroke="black" d="M421.41,-152C421.41,-152 262.61,-152 262.61,-152 256.61,-152 250.61,-146 250.61,-140 250.61,-140 250.61,-105.2 250.61,-105.2 250.61,-99.2 256.61,-93.2 262.61,-93.2 262.61,-93.2 421.41,-93.2 421.41,-93.2 427.41,-93.2 433.41,-99.2 433.41,-105.2 433.41,-105.2 433.41,-140 433.41,-140 433.41,-146 427.41,-152 421.41,-152"></path>
+<text text-anchor="middle" x="342.01" y="-135.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.clusterParams</text>
+<text text-anchor="middle" x="342.01" y="-118.4" font-family="Times,serif" font-size="14.00">.distance_continuous_index</text>
+<text text-anchor="middle" x="342.01" y="-101.6" font-family="Times,serif" font-size="14.00">(if continuous dims exist)</text>
+</g>
+<!-- root&#45;&gt;cont_idx -->
+<g id="edge3" class="edge">
+<title>root-&gt;cont_idx</title>
+<path fill="none" stroke="black" d="M188.41,-146.18C205.45,-143.55 223.29,-140.79 240.53,-138.13"></path>
+<polygon fill="black" stroke="black" points="241.25,-141.56 250.59,-136.57 240.18,-134.64 241.25,-141.56"></polygon>
+</g>
+<!-- sph_rad -->
+<g id="node5" class="node">
+<title>sph_rad</title>
+<path fill="none" stroke="black" d="M447.67,-75.3C447.67,-75.3 236.35,-75.3 236.35,-75.3 230.35,-75.3 224.35,-69.3 224.35,-63.3 224.35,-63.3 224.35,-11.9 224.35,-11.9 224.35,-5.9 230.35,0.1 236.35,0.1 236.35,0.1 447.67,0.1 447.67,0.1 453.67,0.1 459.67,-5.9 459.67,-11.9 459.67,-11.9 459.67,-63.3 459.67,-63.3 459.67,-69.3 453.67,-75.3 447.67,-75.3"></path>
+<text text-anchor="middle" x="342.01" y="-58.6" font-family="Times,serif" font-size="14.00">di_cfg.analysis.clusterParams</text>
+<text text-anchor="middle" x="342.01" y="-41.8" font-family="Times,serif" font-size="14.00">.distance_spherical_radians</text>
+<text text-anchor="middle" x="342.01" y="-25" font-family="Times,serif" font-size="14.00">(if spherical dims exist)</text>
+<text text-anchor="middle" x="342.01" y="-8.2" font-family="Times,serif" font-size="14.00">(default: 0.63 for 32ch, 0.36 for 128ch)</text>
+</g>
+<!-- root&#45;&gt;sph_rad -->
+<g id="edge4" class="edge">
+<title>root-&gt;sph_rad</title>
+<path fill="none" stroke="black" d="M127.24,-139.85C152.91,-123.73 190.11,-101.36 224.18,-84.6 227.72,-82.86 231.34,-81.13 235.01,-79.42"></path>
+<polygon fill="black" stroke="black" points="236.59,-82.54 244.24,-75.21 233.69,-76.18 236.59,-82.54"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="ols-sub-tree" class="level2">
+<h2 class="anchored" data-anchor-id="ols-sub-tree">OLS Sub-tree</h2>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 465.48 303.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 299.6)">
+<title>OLS</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-299.6 461.48,-299.6 461.48,4 -4,4"></polygon>
+<!-- root -->
+<g id="node1" class="node">
+<title>root</title>
+<path fill="none" stroke="black" d="M218.24,-176.6C218.24,-176.6 11.92,-176.6 11.92,-176.6 5.92,-176.6 -0.08,-170.6 -0.08,-164.6 -0.08,-164.6 -0.08,-147.4 -0.08,-147.4 -0.08,-141.4 5.92,-135.4 11.92,-135.4 11.92,-135.4 218.24,-135.4 218.24,-135.4 224.24,-135.4 230.24,-141.4 230.24,-147.4 230.24,-147.4 230.24,-164.6 230.24,-164.6 230.24,-170.6 224.24,-176.6 218.24,-176.6"></path>
+<text text-anchor="middle" x="115.08" y="-160.2" font-family="Times,serif" font-size="14.00">di_cfg.analysis.OLS</text>
+<text text-anchor="middle" x="115.08" y="-143.4" font-family="Times,serif" font-size="14.00">(optional for feature/cluster inference)</text>
+</g>
+<!-- variance -->
+<g id="node2" class="node">
+<title>variance</title>
+<path fill="none" stroke="black" d="M415.14,-295.7C415.14,-295.7 308.5,-295.7 308.5,-295.7 302.5,-295.7 296.5,-289.7 296.5,-283.7 296.5,-283.7 296.5,-232.3 296.5,-232.3 296.5,-226.3 302.5,-220.3 308.5,-220.3 308.5,-220.3 415.14,-220.3 415.14,-220.3 421.14,-220.3 427.14,-226.3 427.14,-232.3 427.14,-232.3 427.14,-283.7 427.14,-283.7 427.14,-289.7 421.14,-295.7 415.14,-295.7"></path>
+<text text-anchor="middle" x="361.82" y="-279" font-family="Times,serif" font-size="14.00">di_cfg.analysis.OLS</text>
+<text text-anchor="middle" x="361.82" y="-262.2" font-family="Times,serif" font-size="14.00">.varianceType</text>
+<text text-anchor="middle" x="361.82" y="-245.4" font-family="Times,serif" font-size="14.00">= 'equal' | 'unequal'</text>
+<text text-anchor="middle" x="361.82" y="-228.6" font-family="Times,serif" font-size="14.00">(default 'equal')</text>
+</g>
+<!-- root&#45;&gt;variance -->
+<g id="edge1" class="edge">
+<title>root-&gt;variance</title>
+<path fill="none" stroke="black" d="M165.61,-176.64C200.52,-191.19 247.87,-210.93 287.2,-227.32"></path>
+<polygon fill="black" stroke="black" points="285.91,-230.57 296.49,-231.19 288.6,-224.11 285.91,-230.57"></polygon>
+</g>
+<!-- standardize -->
+<g id="node3" class="node">
+<title>standardize</title>
+<path fill="none" stroke="black" d="M445.64,-202C445.64,-202 278.01,-202 278.01,-202 272.01,-202 266.01,-196 266.01,-190 266.01,-190 266.01,-122 266.01,-122 266.01,-116 272.01,-110 278.01,-110 278.01,-110 445.64,-110 445.64,-110 451.64,-110 457.64,-116 457.64,-122 457.64,-122 457.64,-190 457.64,-190 457.64,-196 451.64,-202 445.64,-202"></path>
+<text text-anchor="middle" x="361.82" y="-185.4" font-family="Times,serif" font-size="14.00">di_cfg.analysis.OLS</text>
+<text text-anchor="middle" x="361.82" y="-168.6" font-family="Times,serif" font-size="14.00">.standardize</text>
+<text text-anchor="middle" x="361.82" y="-151.8" font-family="Times,serif" font-size="14.00">= true | false</text>
+<text text-anchor="middle" x="361.82" y="-135" font-family="Times,serif" font-size="14.00">(default false)</text>
+<text text-anchor="middle" x="361.82" y="-118.2" font-family="Times,serif" font-size="14.00">(z-scores predictor &amp; outcome)</text>
+</g>
+<!-- root&#45;&gt;standardize -->
+<g id="edge2" class="edge">
+<title>root-&gt;standardize</title>
+<path fill="none" stroke="black" d="M230.21,-156C238.72,-156 247.27,-156 255.72,-156"></path>
+<polygon fill="black" stroke="black" points="255.96,-159.5 265.96,-156 255.96,-152.5 255.96,-159.5"></polygon>
+</g>
+<!-- ranked -->
+<g id="node4" class="node">
+<title>ranked</title>
+<path fill="none" stroke="black" d="M425.6,-92C425.6,-92 298.04,-92 298.04,-92 292.04,-92 286.04,-86 286.04,-80 286.04,-80 286.04,-12 286.04,-12 286.04,-6 292.04,0 298.04,0 298.04,0 425.6,0 425.6,0 431.6,0 437.6,-6 437.6,-12 437.6,-12 437.6,-80 437.6,-80 437.6,-86 431.6,-92 425.6,-92"></path>
+<text text-anchor="middle" x="361.82" y="-75.4" font-family="Times,serif" font-size="14.00">di_cfg.analysis.OLS</text>
+<text text-anchor="middle" x="361.82" y="-58.6" font-family="Times,serif" font-size="14.00">.ranked</text>
+<text text-anchor="middle" x="361.82" y="-41.8" font-family="Times,serif" font-size="14.00">= true | false</text>
+<text text-anchor="middle" x="361.82" y="-25" font-family="Times,serif" font-size="14.00">(default false)</text>
+<text text-anchor="middle" x="361.82" y="-8.2" font-family="Times,serif" font-size="14.00">(applies rank transform)</text>
+</g>
+<!-- root&#45;&gt;ranked -->
+<g id="edge3" class="edge">
+<title>root-&gt;ranked</title>
+<path fill="none" stroke="black" d="M162.12,-135.31C194.42,-120.79 238.54,-100.96 277,-83.67"></path>
+<polygon fill="black" stroke="black" points="278.45,-86.86 286.13,-79.57 275.58,-80.48 278.45,-86.86"></polygon>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<section id="compatibility-matrix" class="level3">
+<h3 class="anchored" data-anchor-id="compatibility-matrix">Compatibility matrix</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>objective</th>
+<th>inferenceLevel</th>
+<th>supported</th>
+<th>testingApproach</th>
+<th>correction options</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>permutationH0testing</code></td>
+<td><code>feature</code></td>
+<td>yes</td>
+<td>empirical, parametric</td>
+<td>FDR, maxT</td>
+</tr>
+<tr class="even">
+<td><code>permutationH0testing</code></td>
+<td><code>cluster</code></td>
+<td>yes</td>
+<td>parametric</td>
+<td>maxT</td>
+</tr>
+<tr class="odd">
+<td><code>permutationH0testing</code></td>
+<td><code>latent</code></td>
+<td>yes</td>
+<td>empirical</td>
+<td>maxT</td>
+</tr>
+<tr class="even">
+<td><code>bootstrapStability</code></td>
+<td><code>feature</code></td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="odd">
+<td><code>bootstrapStability</code></td>
+<td><code>cluster</code></td>
+<td>no</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+<tr class="even">
+<td><code>bootstrapStability</code></td>
+<td><code>latent</code></td>
+<td>yes</td>
+<td>n/a</td>
+<td>n/a</td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="general-parameters" class="level3">
 <h3 class="anchored" data-anchor-id="general-parameters">General parameters</h3>
 <ol type="1">
@@ -360,73 +952,9 @@ ul.task-list li input[type="checkbox"] {
 <li>when <code>false</code>, uses raw/standardized values (it yields Pearson correlation coefficients when used with di_cfg.analysis.OLS.standardize = true)</li>
 <li>when <code>true</code>, rank transform both predictor and outcome variables (it yields Spearman correlation coefficients when used with di_cfg.analysis.OLS.standardize = true)</li>
 </ul>
+
+
 </section>
-<section id="compatibility-matrix" class="level3">
-<h3 class="anchored" data-anchor-id="compatibility-matrix">Compatibility matrix</h3>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>objective</th>
-<th>inferenceLevel</th>
-<th>supported</th>
-<th>testingApproach</th>
-<th>correction options</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>permutationH0testing</code></td>
-<td><code>feature</code></td>
-<td>yes</td>
-<td>empirical, parametric</td>
-<td>FDR, maxT</td>
-</tr>
-<tr class="even">
-<td><code>permutationH0testing</code></td>
-<td><code>cluster</code></td>
-<td>yes</td>
-<td>parametric</td>
-<td>maxT</td>
-</tr>
-<tr class="odd">
-<td><code>permutationH0testing</code></td>
-<td><code>latent</code></td>
-<td>yes</td>
-<td>empirical</td>
-<td>maxT</td>
-</tr>
-<tr class="even">
-<td><code>bootstrapStability</code></td>
-<td><code>feature</code></td>
-<td>yes</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr class="odd">
-<td><code>bootstrapStability</code></td>
-<td><code>cluster</code></td>
-<td>no</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-<tr class="even">
-<td><code>bootstrapStability</code></td>
-<td><code>latent</code></td>
-<td>yes</td>
-<td>n/a</td>
-<td>n/a</td>
-</tr>
-</tbody>
-</table>
-
-
 </section>
 </section>
 
