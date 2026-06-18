@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Documentation of Diagonale for MATLAB",
     "section": "",
-    "text": "Documentation of Diagonale for MATLAB\nToolbox for statistical data analysis\nSoftware available at: GitHub repository\nCite as (APA style): Gallicchio, G. (2025). Diagonale [software]. Zenodo. https://doi.org/10.5281/zenodo.16808782\nNote: this documentation is work in progress\n\nInstallation link\nAnalysis parameters decision tree link\nAnalysis parameters definitions coming soon\nTutorials coming soon"
+    "text": "Documentation of Diagonale for MATLAB\nToolbox for statistical data analysis\nSoftware available at: GitHub repository\nCite as (APA style): Gallicchio, G. (2025). Diagonale [software]. Zenodo. https://doi.org/10.5281/zenodo.16808782\nNote: this documentation is work in progress\n\nInstallation link\nAnalysis parameters link\nTutorials link"
   },
   {
     "objectID": "decisionTree.html",
@@ -40,5 +40,131 @@
     "title": "Diagonale Analysis Decision Tree",
     "section": "",
     "text": "OLS\n\n\n\nroot\n\ndi_cfg.analysis.OLS\n(optional for feature/cluster inference)\n\n\n\nvariance\n\ndi_cfg.analysis.OLS\n.varianceType\n= 'equal' | 'unequal'\n(default 'equal')\n\n\n\nroot-&gt;variance\n\n\n\n\n\nstandardize\n\ndi_cfg.analysis.OLS\n.standardize\n= true | false\n(default false)\n(z-scores predictor & outcome)\n\n\n\nroot-&gt;standardize\n\n\n\n\n\nranked\n\ndi_cfg.analysis.OLS\n.ranked\n= true | false\n(default false)\n(applies rank transform)\n\n\n\nroot-&gt;ranked\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nobjective\ninferenceLevel\nsupported\ntestingApproach\ncorrection options\n\n\n\n\npermutationH0testing\nfeature\nyes\nempirical, parametric\nFDR, maxT\n\n\npermutationH0testing\ncluster\nyes\nparametric\nmaxT\n\n\npermutationH0testing\nlatent\nyes\nempirical\nmaxT\n\n\nbootstrapStability\nfeature\nyes\nn/a\nn/a\n\n\nbootstrapStability\ncluster\nno\nn/a\nn/a\n\n\nbootstrapStability\nlatent\nyes\nn/a\nn/a\n\n\n\n\n\n\n\ndi_cfg.analysis.objective\n\n\nrequired for all analyses\nallowed values: permutationH0testing, bootstrapStability\n\n\ndi_cfg.analysis.inferenceLevel\n\n\nrequired for all analyses\nallowed values: feature, cluster, latent\n\n\ndi_cfg.analysis.dataStruct\n\n\nrequired for all analyses\nmust be a ‘table’ variable\n\n\ndi_cfg.analysis.ignore_row\n\n\nrequired for all analyses (default is to ignore nothing)\nif provided: column vector with one value per row of Y\n\n\ndi_cfg.analysis.ignore_col\n\n\noptional for all analyses (default is to ignore nothing)\nif provided: row vector with one value per column of Y\n\n\ndi_cfg.analysis.randomSeed\n\n\nrequired for all analyses (default is 42)\nmust be finite integer scalar\n\n\ndi_cfg.analysis.nIterations\n\n\nrequired for all analyses (default is 5000)\n\n\ndi_cfg.analysis.verbose\n\n\noptional for all analyses (default is false)\ntype: logical/boolean\ncontrols whether debug/progress information is printed to console\n\n\ndi_cfg.analysis.figFlag\n\n\noptional for all analyses (default is false)\ntype: logical/boolean\ncontrols whether figures/plots are generated during analysis\n\n\n\n\nThe following parameters must be set if di_cfg.analysis.objective = 'permutationH0testing'\n\ndi_cfg.analysis.permuteUnit\n\n\nrequired when di_cfg.analysis.objective = permutationH0testing\nnot used when di_cfg.analysis.objective = bootstrapStability\nallowed values: wholeObservation, withinObservation\nnote: final validity depends on design code in di_validateH0\n\n\ndi_cfg.analysis.p_crit\n\n\nrequired when di_cfg.analysis.objective = permutationH0testing (default 0.05)\nnot used when di_cfg.analysis.objective = bootstrapStability\n\n\ndi_cfg.analysis.testingApproach\n\n\nrequired when di_cfg.analysis.objective = permutationH0testing\nnot allowed when di_cfg.analysis.objective = bootstrapStability\nallowed values depend on di_cfg.analysis.inferenceLevel = ...:\n\n'feature': testing approach can be empirical or parametric\n'cluster': testing approach can be parametric only\n'latent': testing approach can be empirical only\n\n\n\ndi_cfg.analysis.correction\n\n\nrequired when di_cfg.analysis.objective = permutationH0testing\nnot allowed when di_cfg.analysis.objective = bootstrapStability\nallowed values depend on inferenceLevel:\n\nfeature: FDR or maxT\ncluster: maxT only\nlatent: maxT only\n\n\n\ndi_cfg.analysis.FDR_dimensions\n\n\nrequired only when:\n\ndi_cfg.analysis.objective = permutationH0testing\ndi_cfg.analysis.inferenceLevel = feature\ndi_cfg.analysis.correction = FDR\n\nnot allowed in all other cases\n\n\n\n\n\ndi_cfg.analysis.clusterParams\n\n\nrequired when di_cfg.analysis.inferenceLevel = cluster\noptional but ignored when inferenceLevel is not cluster\n\n\ndi_cfg.analysis.clusterParams.adjacencyMatrix\n\n\nrequired when di_cfg.analysis.inferenceLevel = cluster\n\n\ndi_cfg.analysis.clusterParams.distance_continuous_index\n\n\nrequired when:\n\ndi_cfg.analysis.inferenceLevel = cluster\nat least one dimension is continuous\n\n\n\ndi_cfg.analysis.clusterParams.distance_spherical_radians\n\n\nrequired when:\n\ndi_cfg.analysis.inferenceLevel = cluster\nat least one dimension is spherical\n\n\n\ndi_cfg.analysis.clusterParams.clusterFormingPvalThreshold\n\n\nrequired when di_cfg.analysis.inferenceLevel = cluster (default 0.05)\n\n\n\n\n\ndi_cfg.analysis.plssvdParams\n\n\nrequired when di_cfg.analysis.inferenceLevel = latent\nignored when di_cfg.analysis.inferenceLevel is not latent\n\n\ndi_cfg.analysis.plssvdParams.zscoringVec\n\n\nrequired when di_cfg.analysis.inferenceLevel = latent (default [false, true])\n\n\ndi_cfg.analysis.subjectCentering\n\n\noptional, only valid when di_cfg.analysis.inferenceLevel = latent AND design has repeated measures\nallowed values: center, noCenter (default is noCenter)\nnote: if set to center in OLS-based analyses (feature/cluster), causes validation error\nrepeated measures designs typically have subjects appearing in multiple conditions\n\n\n\n\nThe following parameters apply only when di_cfg.analysis.inferenceLevel = 'feature' or 'cluster', which are powered by OLS regression under the hood.\n\ndi_cfg.analysis.OLS.varianceType\n\n\noptional for OLS-based feature and cluster analyses\nallowed values: equal, unequal (default is equal)\nequal compares groups through standard Student’s t-test (homogeneous variance assumed)\nunequal compares groups through Welch’s t-test (heterogeneous variance allowed)\n\n\ndi_cfg.analysis.OLS.standardize\n\n\noptional for OLS-based feature and cluster analyses\nallowed values: true, false as logical/boolean (default is false)\nwhen false, uses raw values\nwhen true, z-scores both predictor and outcome variables (standardized slopes equal correlation coefficient)\n\n\ndi_cfg.analysis.OLS.ranked\n\n\noptional for OLS-based feature and cluster analyses\nallowed values: true, false as logical/boolean (default is false)\nwhen false, uses raw/standardized values (it yields Pearson correlation coefficients when used with di_cfg.analysis.OLS.standardize = true)\nwhen true, rank transform both predictor and outcome variables (it yields Spearman correlation coefficients when used with di_cfg.analysis.OLS.standardize = true)"
+  },
+  {
+    "objectID": "tutorial.html",
+    "href": "tutorial.html",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "Diagonale needs to be added to your MATLAB path. You can do this by running the following command in the MATLAB command window:\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO"
+  },
+  {
+    "objectID": "tutorial.html#load-diagonale",
+    "href": "tutorial.html#load-diagonale",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "Diagonale needs to be added to your MATLAB path. You can do this by running the following command in the MATLAB command window:\nTO DO"
+  },
+  {
+    "objectID": "tutorial.html#structure-the-data",
+    "href": "tutorial.html#structure-the-data",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorial.html#decide-and-validate-dimensions",
+    "href": "tutorial.html#decide-and-validate-dimensions",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorial.html#decide-and-validate-analysis",
+    "href": "tutorial.html#decide-and-validate-analysis",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorial.html#run-analysis",
+    "href": "tutorial.html#run-analysis",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorial.html#store-results",
+    "href": "tutorial.html#store-results",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorial.html#create-figure",
+    "href": "tutorial.html#create-figure",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorial.html#store-figure",
+    "href": "tutorial.html#store-figure",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorials.html",
+    "href": "tutorials.html",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "Diagonale needs to be added to your MATLAB path. You can do this by running the following command in the MATLAB command window:\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO\n\n\n\nTO DO"
+  },
+  {
+    "objectID": "tutorials.html#load-diagonale",
+    "href": "tutorials.html#load-diagonale",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "Diagonale needs to be added to your MATLAB path. You can do this by running the following command in the MATLAB command window:\nTO DO"
+  },
+  {
+    "objectID": "tutorials.html#structure-the-data",
+    "href": "tutorials.html#structure-the-data",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorials.html#decide-and-validate-dimensions",
+    "href": "tutorials.html#decide-and-validate-dimensions",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorials.html#decide-and-validate-analysis",
+    "href": "tutorials.html#decide-and-validate-analysis",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorials.html#run-analysis",
+    "href": "tutorials.html#run-analysis",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorials.html#store-results",
+    "href": "tutorials.html#store-results",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorials.html#create-figure",
+    "href": "tutorials.html#create-figure",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
+  },
+  {
+    "objectID": "tutorials.html#store-figure",
+    "href": "tutorials.html#store-figure",
+    "title": "Diagonale Tutorials",
+    "section": "",
+    "text": "TO DO"
   }
 ]
