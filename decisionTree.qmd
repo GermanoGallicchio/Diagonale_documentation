@@ -2,6 +2,212 @@
 
 How to choose analysis parameters in Diagonale.
 
+## Main Analysis Tree
+
+```{dot}
+digraph DecisionTree {
+    node [shape=box, style=rounded];
+    splines = line;
+    newrank = true;
+
+    root [label="Start"];
+
+    subgraph cluster_global {
+        label="Global/Common\nanalysis settings";
+        style="dashed";
+        global_seed [label="di_cfg.analysis.randomSeed\ndi_cfg.analysis.nIterations\n(required for all)"];
+    }
+
+    perm [label="di_cfg.analysis.objective\n= 'permutationH0testing'"];
+    subgraph cluster_permutation {
+        label="permutation parameters";
+        style="dashed";
+        perm_h0 [label="di_cfg.analysis.permuteUnit\n= 'wholeObservation' | 'withinObservation'\n\ndi_cfg.analysis.p_crit\n(default 0.05)"];
+    }
+    
+    boot [label="di_cfg.analysis.objective\n= 'bootstrapStability'"];
+
+    feat1 [label="di_cfg.analysis.\ninferenceLevel\n= 'feature'"];
+    clus1 [label="di_cfg.analysis.\ninferenceLevel\n= 'cluster'"];
+    late1 [label="di_cfg.analysis.\ninferenceLevel\n= 'latent'"];
+
+    subgraph cluster_clustering {
+        label="clustering parameters";
+        style="dashed";
+        clus1_cluster [label="di_cfg.analysis.clusterParams\n(see clusterParams tree below)"];
+    }
+
+    feat1_test [label="di_cfg.analysis.\ntestingApproach\n= 'empirical' | 'parametric'"];
+    feat1_corr_fdr [label="di_cfg.analysis.\ncorrection\n= 'FDR'"];
+    feat1_corr_maxT [label="di_cfg.analysis.\ncorrection\n= 'maxT'"];
+    feat1_fdr [label="di_cfg.analysis.FDR_dimensions\n(if correction='FDR')"];
+
+    clus1_test [label="di_cfg.analysis.\ntestingApproach\n= 'parametric'"];
+    clus1_corr [label="di_cfg.analysis.\ncorrection\n= 'maxT'"];
+
+    late1_test [label="di_cfg.analysis.\ntestingApproach\n= 'empirical'"];
+    late1_corr [label="di_cfg.analysis.\ncorrection\n= 'maxT'"];
+    subgraph cluster_plssvd {
+        label="PLS-SVD parameters";
+        style="dashed";
+        rank="max";
+        plssvd_zsc [label="di_cfg.analysis.plssvdParams\n.zscoringVec\n(default [false, true])"];
+        plssvd_sc [label="di_cfg.analysis.\nsubjectCentering\n= 'noCenter' | 'center'\n(latent + repeated only)"];
+    }
+
+    feat2 [label="di_cfg.analysis.\ninferenceLevel\n= 'feature'"];
+    
+    late2 [label="di_cfg.analysis.\ninferenceLevel\n= 'latent'"];
+
+    subgraph cluster_ols {
+        label="OLS parameters";
+        style="dashed";
+        rank="max";
+        ols_ref [label="di_cfg.analysis.OLS\n(see OLS tree below)"];
+    }
+
+    {
+        rank = same;
+        perm;
+        boot;
+    }
+
+    {
+        rank = same;
+        feat1;
+        clus1;
+        late1;
+        feat2;
+        late2;
+    }
+
+    {
+        rank = same;
+        feat1_test;
+        clus1_test;
+        late1_test;
+    }
+
+    {
+        rank = same;
+        feat1_corr_fdr;
+        feat1_corr_maxT;
+        clus1_corr;
+        late1_corr;
+    }
+
+    {
+        rank = same;
+        plssvd_zsc;
+        ols_ref;
+    }
+
+    plssvd_zsc -> ols_ref [style=invis, weight=100];
+    
+    root -> global_seed;
+    root -> perm;
+    root -> boot;
+    
+    perm -> perm_h0;
+    perm -> feat1;
+    perm -> clus1;
+    perm -> late1;
+    
+    feat1 -> ols_ref;
+    feat1 -> feat1_test;
+    feat1_test -> feat1_corr_fdr;
+    feat1_test -> feat1_corr_maxT;
+    feat1_corr_fdr -> feat1_fdr;
+
+    clus1 -> clus1_cluster;
+    clus1 -> ols_ref;
+    clus1 -> clus1_test;
+    clus1_test -> clus1_corr;
+
+    late1 -> late1_test;
+    late1_test -> late1_corr;
+    late1_corr -> plssvd_zsc;
+    plssvd_zsc -> plssvd_sc;
+
+    boot -> feat2;
+    boot -> late2;
+    
+    feat2 -> ols_ref;
+    
+    late2 -> plssvd_zsc;
+}
+```
+
+## dataStruct Parameter
+
+`di_cfg.analysis.dataStruct` is required for all analyses. It must be a MATLAB table variable that describes the structure of your data—specifically, what each row of your Y matrix represents. At minimum, it should include an 'observationID' column. The table can include additional columns for grouping variables, subject identifiers, or other design factors. 
+
+**TO DO: show how to create a dataStruct table with an example.**
+
+
+
+## clusterParams Sub-tree
+
+```{dot}
+digraph ClusterParams {
+    rankdir = LR;
+    node [shape=box, style=rounded];
+    
+    root [label="di_cfg.analysis.clusterParams\n(required for cluster inference)"];
+    
+    adjacency [label="di_cfg.analysis.clusterParams\n.adjacencyMatrix\n(required)"];
+    
+    threshold [label="di_cfg.analysis.clusterParams\n.clusterFormingPvalThreshold\n(default 0.05)"];
+    
+    cont_idx [label="di_cfg.analysis.clusterParams\n.distance_continuous_index\n(if continuous dims exist)"];
+    
+    sph_rad [label="di_cfg.analysis.clusterParams\n.distance_spherical_radians\n(if spherical dims exist)\n(default: 0.63 for 32ch, 0.36 for 128ch)"];
+    
+    root -> adjacency;
+    root -> threshold;
+    root -> cont_idx;
+    root -> sph_rad;
+}
+```
+
+## OLS Sub-tree
+
+```{dot}
+digraph OLS {
+    rankdir = LR;
+    node [shape=box, style=rounded];
+    
+    root [label="di_cfg.analysis.OLS\n(optional for feature/cluster inference)"];
+    
+    variance [label="di_cfg.analysis.OLS\n.varianceType\n= 'equal' | 'unequal'\n(default 'equal')"];
+    
+    standardize [label="di_cfg.analysis.OLS\n.standardize\n= true | false\n(default false)\n(z-scores predictor & outcome)"];
+    
+    ranked [label="di_cfg.analysis.OLS\n.ranked\n= true | false\n(default false)\n(applies rank transform)"];
+    
+    root -> variance;
+    root -> standardize;
+    root -> ranked;
+}
+```
+
+
+### Compatibility matrix
+
+| objective         | inferenceLevel | supported | testingApproach | correction options
+| --- | --- | --- | --- | --- |
+| `permutationH0testing` | `feature` | yes | empirical, parametric | FDR, maxT |
+| `permutationH0testing` | `cluster` | yes | parametric | maxT |
+| `permutationH0testing` | `latent`  | yes | empirical  | maxT |
+| `bootstrapStability`   | `feature` | yes | n/a        | n/a  |
+| `bootstrapStability`   | `cluster` | no  | n/a        | n/a  |
+| `bootstrapStability`   | `latent`  | yes | n/a        | n/a  |
+
+
+
+
+
+
 ### General parameters
 
 1. `di_cfg.analysis.objective`
@@ -141,16 +347,4 @@ The following parameters apply only when `di_cfg.analysis.inferenceLevel = 'feat
 - when `true`, rank transform both predictor and outcome variables (it yields Spearman correlation coefficients when used with di_cfg.analysis.OLS.standardize = true)
 
 
-
-
-### Compatibility matrix
-
-| objective         | inferenceLevel | supported | testingApproach | correction options
-| --- | --- | --- | --- | --- |
-| `permutationH0testing` | `feature` | yes | empirical, parametric | FDR, maxT |
-| `permutationH0testing` | `cluster` | yes | parametric | maxT |
-| `permutationH0testing` | `latent`  | yes | empirical  | maxT |
-| `bootstrapStability`   | `feature` | yes | n/a        | n/a  |
-| `bootstrapStability`   | `cluster` | no  | n/a        | n/a  |
-| `bootstrapStability`   | `latent`  | yes | n/a        | n/a  |
 
